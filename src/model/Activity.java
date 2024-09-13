@@ -9,6 +9,12 @@ public class Activity {
 	private String time;
 	private String totalDistance;
 	private String averageSpeed;
+	private String maximumSpeed;
+	private String altitudeUp;
+	private String altitudeDown;
+	private String averageAltitude;
+	private String speedGraphFilePath;
+	private String altitudeGraphFilePath;
 	
 	public Activity() {
 		this.type = "null";
@@ -16,6 +22,12 @@ public class Activity {
 		this.time = "null";
 		this.totalDistance = "null";
 		this.averageSpeed = "null";
+		this.maximumSpeed = "null";
+		this.altitudeUp = "null";
+		this.altitudeDown = "null";
+		this.averageAltitude = "null";
+		this.speedGraphFilePath = "null";
+		this.altitudeGraphFilePath = "null";
 	}
 	
 	
@@ -42,6 +54,30 @@ public class Activity {
 	public String getAverageSpeed() {
 		return averageSpeed;
 	}
+	
+	public String getMaximumSpeed() {
+		return maximumSpeed;
+	}
+	
+	public String getAltitudeUp() {
+		return altitudeUp;
+	}
+	
+	public String getAltitudeDown() {
+		return altitudeDown;
+	}
+	
+	public String getAverageAltitude() {
+		return averageAltitude;
+	}
+	
+	public String getSpeedGraph() {
+		return speedGraphFilePath;
+	}
+	
+	public String getAltitudeGraph() {
+		return altitudeGraphFilePath;
+	}
 
 	
 /* ========================================================================== */
@@ -61,11 +97,35 @@ public class Activity {
 	}
 
 	public void setTotalDistance(float totalDistance) {
-		this.totalDistance = roundTwoDecimalFloat(totalDistance);
+		this.totalDistance = roundOneDecimalFloat(totalDistance);
 	}
 	
 	public void setAverageSpeed(float averageSpeed) {
-		this.averageSpeed = String.valueOf(averageSpeed);
+		this.averageSpeed = roundTwoDecimalFloat(averageSpeed);
+	}
+	
+	public void setMaximumSpeed(float maximumSpeed) {
+		this.maximumSpeed = roundTwoDecimalFloat(maximumSpeed);
+	}
+	
+	public void setAltitudeUp(float altitudeUp) {
+		this.altitudeUp = String.valueOf(Math.round(altitudeUp));
+	}
+	
+	public void setAltitudeDown(float altitudeDown) {
+		this.altitudeDown = String.valueOf(Math.round(altitudeDown));
+	}
+	
+	public void setAverageAltitude(float averageAltitude) {
+		this.averageAltitude = String.valueOf(Math.round(averageAltitude));
+	}
+	
+	public void setSpeedGraph(String speedGraphFilePath) {
+		this.speedGraphFilePath = speedGraphFilePath;
+	}
+	
+	public void setAltitudeGraph(String altitudeGraphFilePath) {
+		this.altitudeGraphFilePath = altitudeGraphFilePath;
 	}
 	
 	
@@ -75,6 +135,14 @@ public class Activity {
 	private String roundTwoDecimalFloat(float value) {
 		String source = String.valueOf(value);
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        double number = Double.parseDouble(source);
+        
+        return decimalFormat.format(number);
+	}
+	
+	private String roundOneDecimalFloat(float value) {
+		String source = String.valueOf(value);
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
         double number = Double.parseDouble(source);
         
         return decimalFormat.format(number);

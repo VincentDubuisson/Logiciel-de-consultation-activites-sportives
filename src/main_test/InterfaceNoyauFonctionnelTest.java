@@ -24,6 +24,10 @@ public class InterfaceNoyauFonctionnelTest {
     public String[] getActivitiesList() {
         return activities.getActivitiesList();
     }
+    
+    public Activity getActivityById(int id) {
+    	return activities.getActivityById(id);
+    }
 
 }
 

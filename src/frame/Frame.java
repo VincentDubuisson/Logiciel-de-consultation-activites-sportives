@@ -39,6 +39,8 @@ public class Frame extends javax.swing.JFrame {
         activityListImportPanel = new javax.swing.JPanel();
         activityListPanel = new javax.swing.JPanel();
         label0 = new javax.swing.JLabel();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        loadingLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         activitiesList = new javax.swing.JList<>();
         importPanel = new javax.swing.JPanel();
@@ -49,25 +51,19 @@ public class Frame extends javax.swing.JFrame {
         cyclingActivityPanel = new javax.swing.JPanel();
         label7 = new javax.swing.JLabel();
         cyclingDistanceLabel = new javax.swing.JLabel();
-        label1 = new javax.swing.JLabel();
         label2 = new javax.swing.JLabel();
-        label3 = new javax.swing.JLabel();
         label4 = new javax.swing.JLabel();
         cyclingAverageSpeedLabel = new javax.swing.JLabel();
         cyclingAltitudeUpLabel = new javax.swing.JLabel();
         label5 = new javax.swing.JLabel();
-        label6 = new javax.swing.JLabel();
         cyclingTimeLabel = new javax.swing.JLabel();
         cyclingAltitudeGraphLabel = new javax.swing.JLabel();
         label8 = new javax.swing.JLabel();
         cyclingMaxSpeedLabel = new javax.swing.JLabel();
-        label9 = new javax.swing.JLabel();
         label10 = new javax.swing.JLabel();
         cyclingAltitudeDownLabel = new javax.swing.JLabel();
-        label11 = new javax.swing.JLabel();
         label12 = new javax.swing.JLabel();
         cyclingAverageAltitudeLabel = new javax.swing.JLabel();
-        label13 = new javax.swing.JLabel();
         label14 = new javax.swing.JLabel();
         cyclingSpeedGraphLabel = new javax.swing.JLabel();
         cyclingTypeLabel = new javax.swing.JLabel();
@@ -85,7 +81,12 @@ public class Frame extends javax.swing.JFrame {
         label0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label0.setText("Activités");
 
+        loadingLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        loadingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loadingLabel.setText("Chargement ...");
+
         jScrollPane1.setHorizontalScrollBar(null);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(268, 608));
 
         activitiesList.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         activitiesList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -100,6 +101,34 @@ public class Frame extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(activitiesList);
+
+        jLayeredPane2.setLayer(loadingLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
+        jLayeredPane2.setLayout(jLayeredPane2Layout);
+        jLayeredPane2Layout.setHorizontalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loadingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jLayeredPane2Layout.setVerticalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                .addGap(282, 282, 282)
+                .addComponent(loadingLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
 
         importPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
         importPanel.setPreferredSize(new java.awt.Dimension(324, 104));
@@ -120,7 +149,7 @@ public class Frame extends javax.swing.JFrame {
             .addGroup(importPanelLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         importPanelLayout.setVerticalGroup(
             importPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,16 +163,16 @@ public class Frame extends javax.swing.JFrame {
         activityListPanel.setLayout(activityListPanelLayout);
         activityListPanelLayout.setHorizontalGroup(
             activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(importPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(label0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(importPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         activityListPanelLayout.setVerticalGroup(
             activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(activityListPanelLayout.createSequentialGroup()
                 .addComponent(label0, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(importPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -152,7 +181,7 @@ public class Frame extends javax.swing.JFrame {
         activityListImportPanel.setLayout(activityListImportPanelLayout);
         activityListImportPanelLayout.setHorizontalGroup(
             activityListImportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(activityListPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(activityListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         activityListImportPanelLayout.setVerticalGroup(
             activityListImportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,11 +202,11 @@ public class Frame extends javax.swing.JFrame {
         noActivityPanel.setLayout(noActivityPanelLayout);
         noActivityPanelLayout.setHorizontalGroup(
             noActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(noActivityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(noActivityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
         );
         noActivityPanelLayout.setVerticalGroup(
             noActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(noActivityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(noActivityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
         );
 
         cyclingActivityPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -188,25 +217,15 @@ public class Frame extends javax.swing.JFrame {
         label7.setText("Temps");
         label7.setVerifyInputWhenFocusTarget(false);
 
-        cyclingDistanceLabel.setFont(new java.awt.Font("Segoe UI", 0, 70)); // NOI18N
+        cyclingDistanceLabel.setFont(new java.awt.Font("Segoe UI", 0, 60)); // NOI18N
         cyclingDistanceLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         cyclingDistanceLabel.setText("00,00");
         cyclingDistanceLabel.setVerifyInputWhenFocusTarget(false);
-
-        label1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        label1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label1.setText("km");
-        label1.setVerifyInputWhenFocusTarget(false);
 
         label2.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
         label2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         label2.setText("Altitude");
         label2.setVerifyInputWhenFocusTarget(false);
-
-        label3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        label3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label3.setText("km/h");
-        label3.setVerifyInputWhenFocusTarget(false);
 
         label4.setForeground(new java.awt.Color(102, 102, 102));
         label4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -214,26 +233,21 @@ public class Frame extends javax.swing.JFrame {
         label4.setVerifyInputWhenFocusTarget(false);
 
         cyclingAverageSpeedLabel.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        cyclingAverageSpeedLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cyclingAverageSpeedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cyclingAverageSpeedLabel.setText("00,00");
         cyclingAverageSpeedLabel.setVerifyInputWhenFocusTarget(false);
 
         cyclingAltitudeUpLabel.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        cyclingAltitudeUpLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cyclingAltitudeUpLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cyclingAltitudeUpLabel.setText("0");
         cyclingAltitudeUpLabel.setVerifyInputWhenFocusTarget(false);
 
         label5.setForeground(new java.awt.Color(102, 102, 102));
-        label5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label5.setText("Gain d'altitude");
         label5.setVerifyInputWhenFocusTarget(false);
 
-        label6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        label6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label6.setText("m");
-        label6.setVerifyInputWhenFocusTarget(false);
-
-        cyclingTimeLabel.setFont(new java.awt.Font("Segoe UI", 0, 70)); // NOI18N
+        cyclingTimeLabel.setFont(new java.awt.Font("Segoe UI", 0, 60)); // NOI18N
         cyclingTimeLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         cyclingTimeLabel.setText("00:00:00");
         cyclingTimeLabel.setVerifyInputWhenFocusTarget(false);
@@ -249,44 +263,29 @@ public class Frame extends javax.swing.JFrame {
         label8.setVerifyInputWhenFocusTarget(false);
 
         cyclingMaxSpeedLabel.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        cyclingMaxSpeedLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cyclingMaxSpeedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cyclingMaxSpeedLabel.setText("00,00");
         cyclingMaxSpeedLabel.setVerifyInputWhenFocusTarget(false);
 
-        label9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        label9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label9.setText("km/h");
-        label9.setVerifyInputWhenFocusTarget(false);
-
         label10.setForeground(new java.awt.Color(102, 102, 102));
-        label10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label10.setText("Perte d'altitude");
         label10.setVerifyInputWhenFocusTarget(false);
 
         cyclingAltitudeDownLabel.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        cyclingAltitudeDownLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cyclingAltitudeDownLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cyclingAltitudeDownLabel.setText("0");
         cyclingAltitudeDownLabel.setVerifyInputWhenFocusTarget(false);
 
-        label11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        label11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label11.setText("m");
-        label11.setVerifyInputWhenFocusTarget(false);
-
         label12.setForeground(new java.awt.Color(102, 102, 102));
-        label12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label12.setText("Altitude moyenne");
         label12.setVerifyInputWhenFocusTarget(false);
 
         cyclingAverageAltitudeLabel.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        cyclingAverageAltitudeLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cyclingAverageAltitudeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cyclingAverageAltitudeLabel.setText("0");
         cyclingAverageAltitudeLabel.setVerifyInputWhenFocusTarget(false);
-
-        label13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        label13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label13.setText("m");
-        label13.setVerifyInputWhenFocusTarget(false);
 
         label14.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
         label14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -319,67 +318,50 @@ public class Frame extends javax.swing.JFrame {
             cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cyclingSpeedGraphLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cyclingAltitudeGraphLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 950, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label14, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                .addGap(222, 222, 222)
-                                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                        .addComponent(cyclingAverageSpeedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(226, 226, 226)
-                                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                        .addComponent(cyclingMaxSpeedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                .addGap(173, 173, 173)
-                                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                        .addComponent(cyclingAverageAltitudeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(label13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(139, 139, 139)
-                                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                        .addComponent(cyclingAltitudeUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(131, 131, 131)
-                                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                        .addComponent(cyclingAltitudeDownLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18))
+                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
                         .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cyclingTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cyclingDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                .addComponent(cyclingDistanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56)
+                            .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cyclingDistanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
                         .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cyclingTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82))))
+                            .addComponent(cyclingTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35))
+                    .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cyclingAverageSpeedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label4, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cyclingMaxSpeedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label8, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                        .addGap(219, 219, 219))
+                    .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
+                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cyclingAltitudeGraphLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
+                            .addComponent(label14, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
+                                .addGap(126, 126, 126)
+                                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cyclingAverageAltitudeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(97, 97, 97)
+                                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cyclingAltitudeUpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(106, 106, 106)
+                                .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cyclingAltitudeDownLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cyclingSpeedGraphLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         cyclingActivityPanelLayout.setVerticalGroup(
             cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,13 +373,11 @@ public class Frame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cyclingDateLabel))
                     .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                                .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cyclingDistanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
+                            .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cyclingDistanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cyclingActivityPanelLayout.createSequentialGroup()
                             .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(cyclingTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -406,15 +386,11 @@ public class Frame extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cyclingAverageSpeedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label3))
+                        .addComponent(cyclingAverageSpeedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cyclingMaxSpeedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label9))
+                        .addComponent(cyclingMaxSpeedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -424,26 +400,20 @@ public class Frame extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cyclingAltitudeUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label6))
+                        .addComponent(cyclingAltitudeUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cyclingAltitudeDownLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label11))
+                        .addComponent(cyclingAltitudeDownLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(cyclingActivityPanelLayout.createSequentialGroup()
-                        .addGroup(cyclingActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cyclingAverageAltitudeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label13))
+                        .addComponent(cyclingAverageAltitudeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cyclingAltitudeGraphLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1147, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jLayeredPane1.setLayer(noActivityPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -453,15 +423,15 @@ public class Frame extends javax.swing.JFrame {
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(noActivityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(noActivityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(cyclingActivityPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE))
+                .addComponent(cyclingActivityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(noActivityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+            .addComponent(noActivityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(cyclingActivityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE))
+                .addComponent(cyclingActivityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -472,7 +442,8 @@ public class Frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(activityListImportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1))
+                .addComponent(jLayeredPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,13 +451,13 @@ public class Frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLayeredPane1)
-                    .addComponent(activityListImportPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                    .addComponent(activityListImportPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>                        
+    }// </editor-fold>                    
 
     
 /* ========================================================================== */
@@ -537,6 +508,10 @@ public class Frame extends javax.swing.JFrame {
     
     public JPanel getCyclingActivityPanel() {
         return cyclingActivityPanel;
+    }
+    
+    public JLabel getLoadingLabel() {
+    	return loadingLabel;
     }
     
     public JLabel getCyclingTypeLabel() {
@@ -608,24 +583,20 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JButton importButton;
     private javax.swing.JPanel importPanel;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label0;
-    private javax.swing.JLabel label1;
     private javax.swing.JLabel label10;
-    private javax.swing.JLabel label11;
     private javax.swing.JLabel label12;
-    private javax.swing.JLabel label13;
     private javax.swing.JLabel label14;
     private javax.swing.JLabel label15;
     private javax.swing.JLabel label2;
-    private javax.swing.JLabel label3;
     private javax.swing.JLabel label4;
     private javax.swing.JLabel label5;
-    private javax.swing.JLabel label6;
     private javax.swing.JLabel label7;
     private javax.swing.JLabel label8;
-    private javax.swing.JLabel label9;
     private javax.swing.JLabel noActivityLabel;
+    private javax.swing.JLabel loadingLabel;
     private javax.swing.JPanel noActivityPanel;
     // End of variables declaration                     
 }

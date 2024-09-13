@@ -8,7 +8,7 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import model.ExtractData;
+//import model.ExtractData;
 
 import java.awt.Color;
 import java.io.File;
@@ -18,12 +18,12 @@ public class MainTest {
 	
     public static void main(String[] args) throws IOException {
     	String fileName = "2024_04_30-09_28";
-    	ExtractData dataFile = new ExtractData("data/" + fileName + ".xlsx");
-    	dataFile.openFile();
-    	float[] speed = dataFile.getSpeedArray();
-        float[] distance = dataFile.getDistanceArray();
-        float[] altitude = dataFile.getAltitudeArray();
-        dataFile.closeFile();
+//    	ExtractData dataFile = new ExtractData("data/" + fileName + ".xlsx");
+//    	dataFile.openFile();
+//    	float[] speed = dataFile.getSpeedArray();
+//        float[] distance = dataFile.getDistanceArray();
+//        float[] altitude = dataFile.getAltitudeArray();
+//        dataFile.closeFile();
 
         
 /* ========================================================================== */
@@ -34,9 +34,9 @@ public class MainTest {
         XYSeries seriesSpeed = new XYSeries("Speed");
 
         // Ajout des données à la série
-        for (int i = 0; i < speed.length; i++) {
+        /*for (int i = 0; i < speed.length; i++) {
         	seriesSpeed.add(distance[i], speed[i]);
-        }
+        }*/
 
         // Création d'un ensemble de données à partir de la série
         XYSeriesCollection dataSpeed = new XYSeriesCollection();
@@ -75,9 +75,9 @@ public class MainTest {
         XYSeries seriesAltitude = new XYSeries("Altitude");
 
         // Ajout des données à la série
-        for (int i = 0; i < altitude.length; i++) {
+        /*for (int i = 0; i < altitude.length; i++) {
             seriesAltitude.add(distance[i], altitude[i]);
-        }
+        }*/
 
         // Création d'un ensemble de données à partir de la série
         XYSeriesCollection datasetAltitude = new XYSeriesCollection();

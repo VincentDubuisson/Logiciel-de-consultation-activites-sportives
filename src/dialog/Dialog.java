@@ -13,8 +13,13 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import control.ControlAddActivity;
+import control.ControlImportFile;
 import frame.Frame;
 import main_test.InterfaceNoyauFonctionnelTest;
+import model.Activities;
+import model.Activity;
+import model.ImportFile;
 
 /**
  *
@@ -36,6 +41,7 @@ public class Dialog {
     private JPanel noActivityPanel;
     private JPanel cyclingActivityPanel;
     
+    private JLabel loadingLabel;
     private JLabel cyclingAltitudeDownLabel;
     private JLabel cyclingAltitudeGraphLabel;
     private JLabel cyclingAltitudeUpLabel;
@@ -64,6 +70,7 @@ public class Dialog {
         frame.initFrame();
         frame.setDialog(this);
         frame.setVisible(true);
+        
     }
     
     private void initComponents() {
@@ -74,6 +81,7 @@ public class Dialog {
         noActivityPanel = frame.getNoActivityPanel();
         cyclingActivityPanel = frame.getCyclingActivityPanel();
         
+        loadingLabel = frame.getLoadingLabel();
         cyclingAltitudeDownLabel = frame.getCyclingAltitudeDownLabel();
         cyclingAltitudeGraphLabel = frame.getCyclingAltitudeGraphLabel();
         cyclingAltitudeUpLabel = frame.getCyclingAltitudeUpLabel();
@@ -85,7 +93,25 @@ public class Dialog {
         cyclingSpeedGraphLabel = frame.getCyclingSpeedGraphLabel();
         cyclingTimeLabel = frame.getCyclingTimeLabel();
         cyclingTypeLabel = frame.getCyclingTypeLabel();
+        
     }
+    
+    private void loadExistingFiles() {
+        File folder = new File("data_in"); // Spécifiez le chemin du dossier
+        File[] listOfFiles = folder.listFiles((dir, name) -> name.endsWith(".xlsx")); // Filtrer pour les fichiers Excel
+
+        if (listOfFiles != null) {
+            for (File file : listOfFiles) {
+                if (file.isFile()) {
+                    inf.importFile(file.getPath()); // Importer le fichier via votre interface
+                }
+            }
+            getActivitiesList(); // Récupérer la liste mise à jour des activités
+            setActivitiesList(); // Mettre à jour l'affichage de la liste des activités
+            loadingLabel.setVisible(false);
+        }
+    }
+
     
     
 /* ========================================================================== */
@@ -110,17 +136,38 @@ public class Dialog {
         
     }
     
-    public void handleActivitiesListEvent(int activity) {
+    public void handleActivitiesListEvent(int id) {
     	noActivityPanel.setVisible(false);
+    	if (id != -1) {
+    		setAffichage(inf.getActivityById(id));
+    	}
+    	
     }
     
     private void getActivitiesList() {
         activities = inf.getActivitiesList();
     }
     
-    private void setActivitiesList(){
+    private void setActivitiesList() {
         activitiesList.setListData(activities);
     }
+    
+    // TEMPORAIRE
+    private void setAffichage(Activity activity) {
+    	cyclingTypeLabel.setText(activity.getType());
+    	cyclingTimeLabel.setText(activity.getTime());
+    	cyclingDateLabel.setText(activity.getDate());
+    	cyclingAverageSpeedLabel.setText(activity.getAverageSpeed() + " km/h");
+    	cyclingDistanceLabel.setText(activity.getTotalDistance() + " km");
+    	cyclingMaxSpeedLabel.setText(activity.getMaximumSpeed() + " km/h");
+    	cyclingAltitudeDownLabel.setText("-" + activity.getAltitudeDown() + " m");
+        cyclingAltitudeUpLabel.setText("+" + activity.getAltitudeUp() + " m");
+        cyclingAverageAltitudeLabel.setText(activity.getAverageAltitude() + " m");
+        cyclingSpeedGraphLabel.setIcon(new javax.swing.ImageIcon(activity.getSpeedGraph()));
+        cyclingAltitudeGraphLabel.setIcon(new javax.swing.ImageIcon(activity.getAltitudeGraph()));
+    }
+    
+    
     
     
 /* ========================================================================== */
@@ -130,8 +177,14 @@ public class Dialog {
     public static void main(String[] args) {
         Dialog dialog = new Dialog(new InterfaceNoyauFonctionnelTest());
         EventQueue.invokeLater(() -> {
-            dialog.initDialog();
+        	dialog.initDialog();
             dialog.initComponents();
+            
+            
+            Thread thread = new Thread(() -> dialog.loadExistingFiles());
+            thread.start(); // Lancement du thread
+            
+            
         });
     }
     

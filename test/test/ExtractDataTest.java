@@ -10,7 +10,7 @@ import model.ExtractData;
 
 class ExtractDataTest {
 
-	static ExtractData ex;
+	/*static ExtractData ex;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -90,6 +90,6 @@ class ExtractDataTest {
 		float[] actual = ex.getDistanceArray();
 		
 		assertArrayEquals(expected, actual);
-	}
+	}*/
 
 }

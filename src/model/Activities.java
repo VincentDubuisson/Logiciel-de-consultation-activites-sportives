@@ -10,7 +10,7 @@ public class Activities {
 	private int activitiesNumbers;
 	
 	public Activities() {
-		this.activities = new Activity[10];
+		this.activities = new Activity[20];
 		this.activitiesNumbers = 0;
 	}
 	
@@ -37,6 +37,10 @@ public class Activities {
 		return this.activitiesNumbers;
 	}
 	
+	public Activity getActivityById(int id) {
+		return activities[id];
+	}
+	
 	public String[] getActivitiesList() {
 		String[] activitiesList = new String[activitiesNumbers];
 		
@@ -51,7 +55,7 @@ public class Activities {
 				e.printStackTrace();
 			}
 			String formattedDate = outputFormat.format(date);
-			activitiesList[i] = activities[i].getType() + " " + formattedDate +
+			activitiesList[i] = "Activité du " + formattedDate +
 					" - " + activities[i].getTime() + " - " + activities[i].getTotalDistance() + "km";
 		}
 		
