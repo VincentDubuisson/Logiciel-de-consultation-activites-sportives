@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import control.ControlAddActivity;
 import control.ControlImportFile;
 import frame.Frame;
-import main_test.InterfaceNoyauFonctionnelTest;
+import interface_noyau_fonctionnel.InterfaceNoyauFonctionnel;
 import model.Activities;
 import model.Activity;
 import model.ImportFile;
@@ -32,7 +32,7 @@ public class Dialog {
 /*                               VARIABLES                                    */
 /* ========================================================================== */
     
-	private InterfaceNoyauFonctionnelTest inf;
+	private InterfaceNoyauFonctionnel inf;
     private Frame frame;
     
     private JFileChooser fileChooser;
@@ -61,7 +61,7 @@ public class Dialog {
 /*                              INITIALISATION                                */
 /* ========================================================================== */
 
-    public Dialog(InterfaceNoyauFonctionnelTest inf) {
+    public Dialog(InterfaceNoyauFonctionnel inf) {
         this.inf = inf;
     }
 
@@ -175,12 +175,12 @@ public class Dialog {
 /* ========================================================================== */
     
     public static void main(String[] args) {
-        Dialog dialog = new Dialog(new InterfaceNoyauFonctionnelTest());
+        Dialog dialog = new Dialog(new InterfaceNoyauFonctionnel());
         EventQueue.invokeLater(() -> {
         	dialog.initDialog();
             dialog.initComponents();
             
-            
+            // Thread pour charger les activites tout en affichant l'interface
             Thread thread = new Thread(() -> dialog.loadExistingFiles());
             thread.start(); // Lancement du thread
             

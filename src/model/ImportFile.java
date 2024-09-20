@@ -22,24 +22,32 @@ import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYAreaRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-
 public class ImportFile {
 	
 	private String filePath;
-
 	
 	public ImportFile(String filePath) {
 		this.filePath = filePath;
 	}
 	
+	
+	/* isExcelFile()
+	 * input: none
+	 * output: boolean
+	 * do: renvoie true si le fichier importe est un fichier avec l'extension .xlsx */
 	public boolean isExcelFile() {
 		return filePath.endsWith(".xlsx");
 	}
 	
+	/* copyFile()
+	 * input: none
+	 * output: int
+	 * do: copie le fichier importe dans le dossier data_in et renvoie 0 si une exception est levee*/
 	public int copyFile() {
 		Path sourcePath = Paths.get(filePath);
         Path destinationFolder = Paths.get("data_in/");
@@ -53,6 +61,10 @@ public class ImportFile {
         }
 	}
 	
+	/* copyFile()
+	 * input: none
+	 * output: none
+	 * do: creation du dossier qui va comporter les graphiques de l'activite importe */
 	public void createDataFolder() {
 		File file = new File(filePath);
 		String fileName = file.getName(); // Récupération du nom du fichier
@@ -72,6 +84,10 @@ public class ImportFile {
         }
 	}
 	
+	/* copyFile()
+	 * input: none
+	 * output: Activity
+	 * do: renvoie l'activite liee au fichier importe */
 	public Activity getActivity() {
 		Activity activity = new Activity();
 		ExtractData data = new ExtractData(filePath);
@@ -121,6 +137,10 @@ public class ImportFile {
 	        this.filePath = filePath;
 	    }
 
+	    /* openFile()
+		 * input: none
+		 * output: none
+		 * do: ouvre le fichier importe */
 	    private void openFile() {
 	        try {
 	            file = new FileInputStream(new File(filePath));
@@ -130,6 +150,10 @@ public class ImportFile {
 	        }
 	    }
 
+	    /* closeFile()
+		 * input: none
+		 * output: none
+		 * do: ferme le fichier importe */
 	    private void closeFile() {
 	        if (workbook != null) {
 	            try {
@@ -147,10 +171,18 @@ public class ImportFile {
 	        }
 	    }
 
+	    /* getActivityType()
+		 * input: none
+		 * output: String
+		 * do: renvoie le type de l'activite */
 	    private String getActivityType() {
 	        return getColumnValue(0);
 	    }
 
+	    /* getDate()
+		 * input: none
+		 * output: String
+		 * do: renvoie la date et l'heure de debut de l'activite */
 	    private String getDate() {
 	        String startHour = getColumnValue(1);
 	        // Conversion au bon format
@@ -161,18 +193,34 @@ public class ImportFile {
 	        return dateTime.format(destinationFormatter);
 	    }
 
+	    /* getActivityDuration()
+		 * input: none
+		 * output: String
+		 * do: renvoie la duree de l'activite */
 	    private String getActivityDuration() {
 	        return getColumnValue(2);
 	    }
 
+	    /* getTotalDistance()
+		 * input: none
+		 * output: float
+		 * do: renvoie la distance parcouru lors de l'activite */
 	    private float getTotalDistance() {
 	        return Float.parseFloat(getColumnValue(3));
 	    }
 
+	    /* getAverageSpeed()
+		 * input: none
+		 * output: float
+		 * do: renvoie la vitesse moyenne de l'activite */
 	    private float getAverageSpeed() {
 	        return Float.parseFloat(getColumnValue(4));
 	    }
 
+	    /* getSpeedArray()
+		 * input: none
+		 * output: float[]
+		 * do: renvoie la liste des vitesses de l'activite, une vitesse correspond a une seconde */
 	    private float[] getSpeedArray() {
 	    	// Si le tableau d'altitudes n'est pas encore calculé, on le calcule et le stocke
 	        if (speedArray == null) {
@@ -181,6 +229,10 @@ public class ImportFile {
 	        return speedArray;
 	    }
 
+	    /* getAltitudeArray()
+		 * input: none
+		 * output: float[]
+		 * do: renvoie la liste des altitudes*/
 	    private float[] getAltitudeArray() {
 	        if (altitudeArray == null) {
 	            altitudeArray = stringArrayToFloatArray(getColumnValues(6, 0));
@@ -188,6 +240,10 @@ public class ImportFile {
 	        return altitudeArray;
 	    }
 
+	    /* getDistanceArray()
+		 * input: none
+		 * output: float[]
+		 * do: renvoie la liste des distances*/
 	    private float[] getDistanceArray() {
 	        if (distanceArray == null) {
 	        	distanceArray = stringArrayToFloatArray(getColumnValues(7, 0));
@@ -195,6 +251,10 @@ public class ImportFile {
 	        return distanceArray;
 	    }
 
+	    /* getMaximumSpeed()
+		 * input: none
+		 * output: float
+		 * do: renvoie la vitesse maximum*/
 	    private float getMaximumSpeed() {
 	    	speedArray = getSpeedArray();
 	        float maximumSpeed = speedArray[0];
@@ -206,6 +266,10 @@ public class ImportFile {
 	        return maximumSpeed;
 	    }
 	    
+	    /* getAltitudeUp()
+		 * input: none
+		 * output: float
+		 * do: renvoie le denivele positif cumule */
 	    private float getAltitudeUp() {
 	    	altitudeArray = getAltitudeArray();
 	        float altitude = 0;
@@ -221,6 +285,10 @@ public class ImportFile {
 	        return altitude;
 	    }
 
+	    /* getAltitudeDown()
+		 * input: none
+		 * output: float
+		 * do: renvoie le denivele negatif cumule */
 	    private float getAltitudeDown() {
 	        float altitude = 0;
 	        
@@ -235,7 +303,10 @@ public class ImportFile {
 	        return altitude;
 	    }
 
-
+	    /* getAverageAltitude()
+		 * input: none
+		 * output: float
+		 * do: renvoie l'altitude moyenne */
 	    private float getAverageAltitude() {
 	        float altitude = 0;
 	        for (int i = 0; i < altitudeArray.length; i++) {
@@ -244,11 +315,18 @@ public class ImportFile {
 	        return altitude / altitudeArray.length;
 	    }
 
-	    
+	    /* getColumnValue()
+		 * input: int
+		 * output: String
+		 * do: renvoie le String de la deuxieme ligne de la colonne columnNum du fichier excel */
 	    private String getColumnValue(int columnNum) {
 	        return getColumnValues(columnNum, 1)[0];
 	    }
 	    
+	    /* stringArrayToFloatArray()
+		 * input: String[]
+		 * output: float[]
+		 * do: converti la liste de String[] strings en liste de float[] */
 	    private float[] stringArrayToFloatArray(String[] strings) {
 	        float[] floats = new float[strings.length];
 	        
@@ -263,6 +341,10 @@ public class ImportFile {
 	        return floats;
 	    }
 		
+	    /* getColumnValues()
+		 * input: int, int
+		 * output: String[]
+		 * do: renvoie la liste des valeurs de la colonne columnNum */
 	    private String[] getColumnValues(int columnNum, int numRow) {
 	        Sheet sheet = workbook.getSheetAt(0);
 	        
@@ -274,6 +356,10 @@ public class ImportFile {
 	    	}
 		}
 	    
+	    /* getOneRow()
+		 * input: Sheet, int
+		 * output: String[]
+		 * do: renvoie la liste des valeurs de la colonne columnNum */
 	    private String[] getOneRow(Sheet sheet, int columnNum) {
 	    	String[] values = new String[1];
 	    	Row row = sheet.getRow(1);
@@ -287,6 +373,10 @@ public class ImportFile {
 	    	return values;
 	    }
 	    
+	    /* getMultipleRow()
+		 * input: Sheet, int
+		 * output: String[]
+		 * do: renvoie la liste des valeurs de la colonne columnNum */
 	    private String[] getMultipleRow(Sheet sheet, int columnNum) {
 	    	ArrayList<String> valuesArray = new ArrayList<>();
 	    	
@@ -319,15 +409,19 @@ public class ImportFile {
 	        return values;
 	    }
 	    
+	    /* createSpeedGraph()
+		 * input: String
+		 * output: String
+		 * do: creer le graphique de vitesse et renvoie le chemin d'acces au fichier png du graphique */
 	    private String createSpeedGraph(String fileName) {
-	    	distanceArray = getDistanceArray();
-	    	
-	    	// Création d'une série pour stocker les données de vitesse et de distance
+	        distanceArray = getDistanceArray();
+	        
+	        // Création d'une série pour stocker les données de vitesse et de distance
 	        XYSeries seriesSpeed = new XYSeries("Vitesse");
 
 	        // Ajout des données à la série
 	        for (int i = 0; i < speedArray.length; i++) {
-	        	seriesSpeed.add(distanceArray[i], speedArray[i]);
+	            seriesSpeed.add(distanceArray[i], speedArray[i]);
 	        }
 
 	        // Création d'un ensemble de données à partir de la série
@@ -348,12 +442,16 @@ public class ImportFile {
 	        plotSpeed.setDomainGridlinePaint(Color.LIGHT_GRAY); // Couleur grille verticale
 	        plotSpeed.setRangeGridlinePaint(Color.LIGHT_GRAY); // Couleur grille horizontale
 	        
-	     // Définition de la plage de l'axe des abscisses (distance)
+	        // Définition de la plage de l'axe des abscisses (distance)
 	        NumberAxis domainAxis = (NumberAxis) plotSpeed.getDomainAxis();
 	        domainAxis.setRange(0, getTotalDistance());
 	        
-	        XYLineAndShapeRenderer rendererSpeed = (XYLineAndShapeRenderer) plotSpeed.getRenderer();
-	        rendererSpeed.setSeriesPaint(0, Color.BLUE); // Couleur de la courbe
+	        // Utilisation du XYAreaRenderer pour créer un graphe en aire
+	        XYAreaRenderer areaRenderer = new XYAreaRenderer();
+	        areaRenderer.setSeriesPaint(0, new Color(19, 255, 0, 180)); // Couleur de l'aire
+	        
+	        // Remplacement du renderer
+	        plotSpeed.setRenderer(areaRenderer);
 
 	        // Sauvegarder le graphique dans une image png
 	        int widthSpeed = 950; // Largeur de l'image
@@ -361,13 +459,17 @@ public class ImportFile {
 	        String filePath = "data_out/" + fileName + "/speed_chart.png";
 	        File chartFileSpeed = new File(filePath); // Chemin/Nom du fichier
 	        try {
-				ChartUtils.saveChartAsPNG(chartFileSpeed, chartSpeed, widthSpeed, heightSpeed);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	            ChartUtils.saveChartAsPNG(chartFileSpeed, chartSpeed, widthSpeed, heightSpeed);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 	        return filePath;
 	    }
-	    
+
+	    /* createAltitudeGraph()
+		 * input: String
+		 * output: String
+		 * do: creer le graphique de vitesse et renvoie le chemin d'acces au fichier png du graphique */
 	    private String createAltitudeGraph(String fileName) {
 	    	
 	    	float minAltitude = altitudeArray[0];
@@ -416,8 +518,11 @@ public class ImportFile {
 	        NumberAxis domainAxis = (NumberAxis) plotAltitude.getDomainAxis();
 	        domainAxis.setRange(0, getTotalDistance());
 	        
-	        XYLineAndShapeRenderer rendererAltitude = (XYLineAndShapeRenderer) plotAltitude.getRenderer();
-	        rendererAltitude.setSeriesPaint(0, Color.GREEN); // Couleur de la courbe
+	        XYAreaRenderer areaRenderer = new XYAreaRenderer();
+	        areaRenderer.setSeriesPaint(0, new Color(34, 131, 230, 180)); // Couleur de la courbe
+	        
+	        // Remplacement du renderer
+	        plotAltitude.setRenderer(areaRenderer);
 
 	        // Sauvegarder le graphique dans une image png
 	        int widthAltitude = 950; // Largeur de l'image

@@ -10,10 +10,14 @@ public class Activities {
 	private int activitiesNumbers;
 	
 	public Activities() {
-		this.activities = new Activity[20];
+		this.activities = new Activity[30];
 		this.activitiesNumbers = 0;
 	}
 	
+	/* addActivity()
+	 * input: Activity
+	 * output: none
+	 * do: ajoute l'activite activity dans la liste des activites */
 	public void addActivity(Activity activity) {
 		for (int i = 0; i < activities.length; i++) {
 			if (activities[i] == null) {
@@ -24,6 +28,10 @@ public class Activities {
 		}
 	}
 	
+	/* isPresent()
+	 * input: Activity
+	 * output: boolean
+	 * do: renvoie true si l'activite activity est presente dans la liste des activites, false sinon */
 	public boolean isPresent(Activity activity) {
 		for (int i = 0; i < activities.length; i++) {
 			if (activities[i] == activity) {
@@ -33,14 +41,26 @@ public class Activities {
 		return false;
 	}
 	
+	/* getActivitiesNumbers()
+	 * input: none
+	 * output: int
+	 * do: renvoie le nombre d'activite presente dans la liste d'activites */
 	public int getActivitiesNumbers() {
 		return this.activitiesNumbers;
 	}
 	
+	/* getActivityById()
+	 * input: int
+	 * output: Activity
+	 * do: renvoie l'activite a l'indice id de la liste des activites */
 	public Activity getActivityById(int id) {
 		return activities[id];
 	}
 	
+	/* getActivitiesList()
+	 * input: none
+	 * output: String[]
+	 * do: renvoie une liste de String contenant les noms des activites */
 	public String[] getActivitiesList() {
 		String[] activitiesList = new String[activitiesNumbers];
 		
