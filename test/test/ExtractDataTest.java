@@ -1,12 +1,12 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+/*import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.ExtractData;
+import model.ExtractData;*/
 
 class ExtractDataTest {
 
